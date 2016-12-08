@@ -57,7 +57,7 @@ class Core {
 	 * @return array
 	 */
 	public function removing_exif( $upload = array() ) {
-		if ( ! vare_load() && 'image/jpeg' !== $upload['type'] ) {
+		if ( ! vare_load() || 'image/jpeg' !== $upload['type'] ) {
 			return $upload;
 		}
 
