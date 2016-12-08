@@ -44,7 +44,27 @@ class Core {
 	 * This hook is called once any activated plugins have been loaded.
 	 */
 	protected function __construct() {
-		add_action( 'wp_handle_upload', array( &$this, 'removing_exif' ) );
+		add_filter( 'intermediate_image_sizes_advanced', array( &$this, 'intermediate_image_sizes_advanced' ), 10, 2 );
+	}
+
+	/**
+	 * Removing exif.
+	 *
+	 * @param array $sizes    An associative array of image sizes.
+	 * @param array $metadata An associative array of image metadata: width, height, file.
+	 *
+	 * @return array
+	 */
+	function intermediate_image_sizes_advanced( $sizes, $metadata ) {
+		$upload_dir     = wp_upload_dir();
+		$file           = $upload_dir['basedir'] . DIRECTORY_SEPARATOR . $metadata['file'];
+		$filetype       = wp_check_filetype( $file );
+		$upload['file'] = $file;
+		$upload['type'] = $filetype['type'];
+
+		self::_removing_exif( $upload );
+
+		return $sizes;
 	}
 
 	/**
@@ -56,8 +76,8 @@ class Core {
 	 *
 	 * @return array
 	 */
-	public function removing_exif( $upload = array() ) {
-		if ( ! vare_load() || 'image/jpeg' !== $upload['type'] ) {
+	protected function _removing_exif( $upload = array() ) {
+		if ( ! isset( $upload['type'] ) || 'image/jpeg' !== $upload['type'] || ! vare_load() ) {
 			return $upload;
 		}
 

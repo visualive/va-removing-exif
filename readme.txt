@@ -2,7 +2,7 @@
 Contributors: kuck1u, naoki21st
 Donate link: http://www.amazon.co.jp/registry/wishlist/AN9BLYUQMVZ5/
 Tags: exif, privacy, attachment, attachments, media library, image, images, picture, imagemagick, imagick, gd
-Requires at least: 4.0
+Requires at least: 4.4
 Tested up to: 4.7
 Stable tag: trunk
 License: GPLv2 or later
@@ -12,16 +12,22 @@ Automatically removing all the Exif of the newly uploaded JPEG images.
 
 == Description ==
 
-Automatically removing all the Exif of the newly uploaded JPEG images. Please note that already uploaded images will not be processed.
+Automatically removing all the Exif of the newly uploaded JPEG images. Please note that already uploaded images will not be processed. If you want to delete Exif from the already uploaded image, please generate thumbnail image again with "[Regenerate Thumbnails](https://ja.wordpress.org/plugins/regenerate-thumbnails/)" etc.
 
 = How to use =
 
 Usage is easy. Just activate the plugin. This plugin requires PHP modules of the ImageMagick or GD.
 
+= Requires =
+* WordPress 4.4+
+* PHP 5.4+ & ImageMagick or GD modules
+
 = Contribute =
+
 You can fork the plugin from [GitHub](https://github.com/visualive/va-removing-exif)
 
 = Attention =
+
 This plugin is intended to save your privacy and should not be used for illegal activity like copyright violations.
 
 == Installation ==

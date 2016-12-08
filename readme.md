@@ -5,11 +5,15 @@ Automatically removing all the Exif of the newly uploaded JPEG images.
 
 ## Description
 
-Automatically removing all the Exif of the newly uploaded JPEG images. Please note that already uploaded images will not be processed.
+Automatically removing all the Exif of the newly uploaded JPEG images. Please note that already uploaded images will not be processed. If you want to delete Exif from the already uploaded image, please generate thumbnail image again with "[Regenerate Thumbnails](https://ja.wordpress.org/plugins/regenerate-thumbnails/)" etc.
 
 ### How to use
 
 Usage is easy. Just activate the plugin. This plugin requires PHP modules of the ImageMagick or GD.
+
+### Requires
+* WordPress 4.4+
+* PHP 5.4+ & ImageMagick or GD modules
 
 ### Attention
 
