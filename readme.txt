@@ -1,5 +1,5 @@
 === VA Removing Exif ===
-Contributors: kuck1u
+Contributors: kuck1u, naoki21st
 Donate link: http://www.amazon.co.jp/registry/wishlist/AN9BLYUQMVZ5/
 Tags: exif, privacy, attachment, attachments, media library, image, images, picture, imagemagick, imagick, gd
 Requires at least: 4.0
