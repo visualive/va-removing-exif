@@ -2,7 +2,7 @@
 /**
  * Plugin Name: VA Removing Exif
  * Plugin URI: https://github.com/visualive/va-removing-exif
- * Description: :)
+ * Description: Removing all Exif of the newly uploaded JPEG image.
  * Author: KUCKLU
  * Version: 1.0.0
  * Author URI: https://www.visualive.jp
