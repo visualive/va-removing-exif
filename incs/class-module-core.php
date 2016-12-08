@@ -72,7 +72,9 @@ class Core {
 			}
 		} elseif ( vare_gd_exist() ) {
 			$image = imagecreatefromjpeg( $upload['file'] );
-			imagejpeg( $image, $upload['file'] );
+
+			imagejpeg( $image, $upload['file'], apply_filters( 'jpeg_quality', 90 ) );
+			imagedestroy( $image );
 		}
 
 		return $upload;
