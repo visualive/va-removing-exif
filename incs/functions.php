@@ -28,7 +28,7 @@
  * @return bool
  */
 function vare_imagick_exist() {
-	return class_exists( 'Imagick' );
+	return extension_loaded( 'imagick' ) && class_exists( 'Imagick' );
 }
 
 /**
