@@ -44,27 +44,79 @@ class Core {
 	 * This hook is called once any activated plugins have been loaded.
 	 */
 	protected function __construct() {
-		add_filter( 'intermediate_image_sizes_advanced', array( &$this, 'intermediate_image_sizes_advanced' ), 10, 2 );
+		add_filter( 'wp_generate_attachment_metadata', array( &$this, 'wp_generate_attachment_metadata' ) );
+		add_filter( 'wp_update_attachment_metadata', array( &$this, 'wp_update_attachment_metadata' ), 10, 2 );
 	}
 
 	/**
 	 * Removing exif.
 	 *
-	 * @param array $sizes    An associative array of image sizes.
-	 * @param array $metadata An associative array of image metadata: width, height, file.
+	 * @param array $metadata An array of attachment meta data.
 	 *
 	 * @return array
 	 */
-	function intermediate_image_sizes_advanced( $sizes, $metadata ) {
-		$upload_dir     = wp_upload_dir();
-		$file           = $upload_dir['basedir'] . DIRECTORY_SEPARATOR . $metadata['file'];
-		$filetype       = wp_check_filetype( $file );
-		$upload['file'] = $file;
-		$upload['type'] = $filetype['type'];
+	public function wp_generate_attachment_metadata( $metadata ) {
+		$upload = self::_create_upload_data( $metadata );
 
-		self::_removing_exif( $upload );
+		if ( ! empty( $upload ) ) {
+			foreach ( $upload as $file ) {
+				self::_removing_exif( $file );
+			}
+		}
 
-		return $sizes;
+		return $metadata;
+	}
+
+	/**
+	 * Create exif data.
+	 *
+	 * @param array $metadata      An array of attachment meta data.
+	 * @param int   $attachment_id Current attachment ID.
+	 *
+	 * @return array
+	 */
+	public function wp_update_attachment_metadata( $metadata, $attachment_id ) {
+		if ( isset( $metadata['image_meta']['camera'] ) && ! empty( $metadata['image_meta']['camera'] ) ) {
+			update_post_meta( $attachment_id, '_vare_attachment_exif', $metadata['image_meta'] );
+		} else {
+			$exif = get_post_meta( $attachment_id, '_vare_attachment_exif', true );
+
+			if ( ! empty( $exif ) ) {
+				$metadata['image_meta'] = $exif;
+			}
+		}
+
+		return $metadata;
+	}
+
+	/**
+	 * Create upload data.
+	 *
+	 * @param $metadata $metadata An array of attachment meta data.
+	 *
+	 * @return array
+	 */
+	protected function _create_upload_data( $metadata ) {
+		$upload = array();
+
+		if ( isset( $metadata['file'] ) ) {
+			$upload_dir = wp_upload_dir();
+			$file       = $upload_dir['basedir'] . DIRECTORY_SEPARATOR . $metadata['file'];
+			$filetype   = wp_check_filetype( $file );
+			$upload[]   = array(
+				'file' => $file,
+				'type' => $filetype['type'],
+			);
+
+			foreach ( $metadata['sizes'] as $size ) {
+				$upload[] = array(
+					'file' => $upload_dir['path'] . DIRECTORY_SEPARATOR . $size['file'],
+					'type' => $filetype['type'],
+				);
+			}
+		}
+
+		return $upload;
 	}
 
 	/**
