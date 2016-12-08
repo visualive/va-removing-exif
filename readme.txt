@@ -8,11 +8,11 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Automatically removing all the Exif of the newly uploaded JPEG image.
+Automatically removing all the Exif of the newly uploaded JPEG images.
 
 == Description ==
 
-Automatically removing all the Exif of the newly uploaded JPEG image. Please note that already uploaded images will not be processed.
+Automatically removing all the Exif of the newly uploaded JPEG images. Please note that already uploaded images will not be processed.
 
 = How to use =
 

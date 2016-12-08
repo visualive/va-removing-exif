@@ -1,11 +1,11 @@
 VA Removing Exif
 ==============================
 
-Automatically removing all the Exif of the newly uploaded JPEG image.
+Automatically removing all the Exif of the newly uploaded JPEG images.
 
 ## Description
 
-Automatically removing all the Exif of the newly uploaded JPEG image. Please note that already uploaded images will not be processed.
+Automatically removing all the Exif of the newly uploaded JPEG images. Please note that already uploaded images will not be processed.
 
 ### How to use
 
