@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$va_removing_exif_path = str_replace( 'incs/defines.php', 'index.php', __FILE__ );
+$va_removing_exif_path = str_replace( 'incs/defines.php', 'removing-exif.php', __FILE__ );
 $va_removing_exif_data = get_file_data( $va_removing_exif_path, array(
 	'Name'        => 'Plugin Name',
 	'PluginURI'   => 'Plugin URI',
@@ -38,13 +38,16 @@ $va_removing_exif_data = get_file_data( $va_removing_exif_path, array(
 	'TextDomain'  => 'Text Domain',
 	'Prefix'      => 'Prefix',
 ) );
+$va_removing_exif_name = rtrim( $va_removing_exif_data['Prefix'], '_' );
 
 define( 'VA_REMOVING_EXIF_URL', plugin_dir_url( $va_removing_exif_path ) );
 define( 'VA_REMOVING_EXIF_PATH', untrailingslashit( plugin_dir_path( $va_removing_exif_path ) ) );
 define( 'VA_REMOVING_EXIF_BASENAME', dirname( plugin_basename( $va_removing_exif_path ) ) );
 define( 'VA_REMOVING_EXIF_NAME', $va_removing_exif_data['Name'] );
+define( 'VA_REMOVING_EXIF_NAME_OPTION', $va_removing_exif_name );
 define( 'VA_REMOVING_EXIF_VERSION', $va_removing_exif_data['Version'] );
 define( 'VA_REMOVING_EXIF_PREFIX', $va_removing_exif_data['Prefix'] );
 
 unset( $va_removing_exif_path );
 unset( $va_removing_exif_data );
+unset( $va_removing_exif_name );

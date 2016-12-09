@@ -31,6 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once dirname( __FILE__ ) . '/defines.php';
 require_once dirname( __FILE__ ) . '/functions.php';
 require_once dirname( __FILE__ ) . '/trait-instance.php';
+require_once dirname( __FILE__ ) . '/class-module-admin.php';
 
 /**
  * Class Core.
@@ -41,11 +42,46 @@ class Core {
 	use Instance;
 
 	/**
+	 * Option data.
+	 *
+	 * @var string
+	 */
+	private static $option = '';
+
+	/**
 	 * This hook is called once any activated plugins have been loaded.
 	 */
 	protected function __construct() {
-		add_filter( 'wp_generate_attachment_metadata', array( &$this, 'wp_generate_attachment_metadata' ) );
-		add_filter( 'wp_update_attachment_metadata', array( &$this, 'wp_update_attachment_metadata' ), 10, 2 );
+		self::$option = get_option( VA_REMOVING_EXIF_NAME_OPTION, '0' );
+		$admin        = apply_filters( VA_REMOVING_EXIF_PREFIX . 'module_admin', Admin::get_called_class() );
+
+		$admin::get_instance();
+		load_plugin_textdomain( 'va-removing-exif', false, VA_REMOVING_EXIF_BASENAME . '/langs' );
+
+		if ( '1' === self::$option ) {
+			add_filter( 'wp_generate_attachment_metadata', array( &$this, 'wp_generate_attachment_metadata' ) );
+			add_filter( 'wp_update_attachment_metadata', array( &$this, 'wp_update_attachment_metadata' ), 10, 2 );
+		} else {
+			add_filter( 'intermediate_image_sizes_advanced', array( &$this, 'intermediate_image_sizes_advanced' ), 10, 2 );
+		}
+	}
+
+	/**
+	 * Removing exif.
+	 *
+	 * @param array $sizes    An associative array of image sizes.
+	 * @param array $metadata An associative array of image metadata: width, height, file.
+	 *
+	 * @return array
+	 */
+	function intermediate_image_sizes_advanced( $sizes, $metadata ) {
+		$parent = self::_create_parent_data( $metadata );
+
+		if ( ! empty( $parent ) ) {
+			self::_removing_exif( $parent );
+		}
+
+		return $sizes;
 	}
 
 	/**
@@ -90,28 +126,45 @@ class Core {
 	}
 
 	/**
+	 * Create parent data.
+	 *
+	 * @param array $metadata An array of attachment meta data.
+	 *
+	 * @return array
+	 */
+	protected function _create_parent_data( $metadata ) {
+		$parent = array();
+
+		if ( isset( $metadata['file'] ) ) {
+			$upload_dir     = wp_upload_dir();
+			$file           = $upload_dir['basedir'] . DIRECTORY_SEPARATOR . $metadata['file'];
+			$filetype       = wp_check_filetype( $file );
+			$parent['file'] = $file;
+			$parent['type'] = $filetype['type'];
+		}
+
+		return $parent;
+	}
+
+	/**
 	 * Create upload data.
 	 *
-	 * @param $metadata $metadata An array of attachment meta data.
+	 * @param array $metadata An array of attachment meta data.
 	 *
 	 * @return array
 	 */
 	protected function _create_upload_data( $metadata ) {
 		$upload = array();
+		$parent = self::_create_parent_data( $metadata );
 
-		if ( isset( $metadata['file'] ) ) {
+		if ( ! empty( $parent ) ) {
 			$upload_dir = wp_upload_dir();
-			$file       = $upload_dir['basedir'] . DIRECTORY_SEPARATOR . $metadata['file'];
-			$filetype   = wp_check_filetype( $file );
-			$upload[]   = array(
-				'file' => $file,
-				'type' => $filetype['type'],
-			);
+			$upload[]   = $parent;
 
 			foreach ( $metadata['sizes'] as $size ) {
 				$upload[] = array(
 					'file' => $upload_dir['path'] . DIRECTORY_SEPARATOR . $size['file'],
-					'type' => $filetype['type'],
+					'type' => $parent['type'],
 				);
 			}
 		}
