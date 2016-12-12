@@ -181,15 +181,19 @@ class Core {
 	 *
 	 * @return array
 	 */
-	protected function _removing_exif( $upload = array() ) {
+	public function _removing_exif( $upload = array() ) {
 		if ( ! isset( $upload['type'] ) || 'image/jpeg' !== $upload['type'] || ! vare_load() ) {
 			return $upload;
 		}
+
+		$jpeg_quality = apply_filters( 'jpeg_quality', 90 );
 
 		if ( vare_imagick_exist() ) {
 			$image = new \Imagick( $upload['file'] );
 
 			if ( $image->valid() ) {
+				$image->setImageFormat( 'jpeg' );
+				$image->setImageCompressionQuality( $jpeg_quality );
 				$image->stripImage();
 				$image->writeImage( $upload['file'] );
 				$image->clear();
@@ -198,7 +202,7 @@ class Core {
 		} elseif ( vare_gd_exist() ) {
 			$image = imagecreatefromjpeg( $upload['file'] );
 
-			imagejpeg( $image, $upload['file'], apply_filters( 'jpeg_quality', 90 ) );
+			imagejpeg( $image, $upload['file'], $jpeg_quality );
 			imagedestroy( $image );
 		}
 
