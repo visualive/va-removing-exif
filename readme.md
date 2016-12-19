@@ -1,7 +1,7 @@
 VA Removing Exif
 ==============================
 
-Automatically removing all the Exif of the newly uploaded JPEG images.
+Automatically remove all Exif data from the new JPEG images when uploading.
 
 ## Description
 
