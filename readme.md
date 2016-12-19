@@ -5,7 +5,7 @@ Automatically remove all Exif data from the new JPEG images when uploading.
 
 ## Description
 
-Automatically removing all the Exif of the newly uploaded JPEG images. Please note that already uploaded images will not be processed. If you want to delete Exif from the already uploaded image, please generate thumbnail image again with "[Regenerate Thumbnails](https://ja.wordpress.org/plugins/regenerate-thumbnails/)" etc.
+Automatically remove all Exif data from the new JPEG images when uploading. Please note that already uploaded images will not be processed. If you want to delete Exif from the already uploaded image, please generate thumbnail image again with "[Regenerate Thumbnails](https://ja.wordpress.org/plugins/regenerate-thumbnails/)" etc.
 
 ### How to use
 
