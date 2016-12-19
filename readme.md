@@ -34,5 +34,9 @@ To install VA Removing Exif:
 
 ## Changelog
 
+### 1.0.1
+* Update description.
+* Added [@mayukojpn](https://profiles.wordpress.org/mayukojpn/) to contributors.
+
 ### 1.0.0
 * First public release.

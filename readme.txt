@@ -1,5 +1,5 @@
 === VA Removing Exif ===
-Contributors: kuck1u, naoki21st
+Contributors: kuck1u, naoki21st, mayukojpn
 Donate link: http://www.amazon.co.jp/registry/wishlist/AN9BLYUQMVZ5/
 Tags: exif, privacy, attachment, attachments, media library, image, images, picture, imagemagick, imagick, gd
 Requires at least: 4.4
@@ -49,6 +49,10 @@ To install VA Removing Exif:
 The description covers it all.
 
 == Changelog ==
+
+= 1.0.1 =
+* Update description.
+* Added [@mayukojpn](https://profiles.wordpress.org/mayukojpn/) to contributors.
 
 = 1.0.0 =
 * First public release.
