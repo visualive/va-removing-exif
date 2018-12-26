@@ -1,11 +1,15 @@
 VA Removing Exif
 ==============================
 
-Automatically remove all Exif data from the new JPEG images when uploading.
+Automatically remove all Exif data from new JPEG and PNG images when uploading.
 
 ## Description
 
-Automatically remove all Exif data from the new JPEG images when uploading. Please note that already uploaded images will not be processed. If you want to delete Exif from the already uploaded image, please generate thumbnail image again with "[Regenerate Thumbnails](https://ja.wordpress.org/plugins/regenerate-thumbnails/)" etc.
+Automatically remove all Exif data from the JPEG and PNG images when uploading.
+
+Exif data can optionally be saved as metadata separately.
+
+Please note that already uploaded images will not be processed. If you want to delete Exif from the already uploaded image, please generate thumbnail image again with "[Regenerate Thumbnails](https://ja.wordpress.org/plugins/regenerate-thumbnails/)" etc.
 
 ### How to use
 
@@ -33,6 +37,12 @@ To install VA Removing Exif:
 **1. Settings > Media.**
 
 ## Changelog
+
+### 1.0.2
+* Added support for PNG images
+* Added [@dim-0](https://profiles.wordpress.org/lmika/) to contributors.
+* Minor adjustments to option page
+* Added german translation
 
 ### 1.0.1
 * Update description.

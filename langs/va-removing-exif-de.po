@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VA Social Buzz\n"
 "POT-Creation-Date: 2018-12-25 20:46+0100\n"
-"PO-Revision-Date: 2018-12-25 20:46+0100\n"
+"PO-Revision-Date: 2018-12-25 20:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: VisuAlive <kuck1u@visualive.jp>\n"
-"Language: en_001\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,32 +18,32 @@ msgstr ""
 
 #: incs/class-module-admin.php:60
 msgid "Remove Exif Metadata"
-msgstr "Exifを削除"
+msgstr "Exif-Metadaten entfernen"
 
 #: incs/class-module-admin.php:63
 msgid "Save Exif"
-msgstr "Exif の保存"
+msgstr "Exif-Daten speichern"
 
 #: incs/class-module-admin.php:73
 msgid ""
 "Configure options for the removal of Exif metadata from uploaded JPEG and "
 "PNG images."
 msgstr ""
-"アップロードされたJPEGおよびPNG画像からExifメタデータを削除するためのオプ"
-"ションを設定します。"
+"Optionen für das Entfernen von Exif-Metadaten aus hochgeladenen JPEG- und "
+"PNG-Dateien"
 
 #: incs/class-module-admin.php:86
 msgid "Save Exif in the post meta."
-msgstr "Exif をポストメタに保存する。"
+msgstr "Speichere die Exif-Daten in den Post-Metadaten"
 
 #: incs/class-module-admin.php:87
 msgid ""
 "Since Exif is stored in the database, it can be acquired with the "
 "wp_get_attachment_metadata function."
 msgstr ""
-"Exif はデータベースに保存されるので、wp_get_attachment_metadata 関数で取得"
-"可能です。"
+"Da die Exif-Daten in der Datenbank gespeichert werden, können sie mithilfe "
+"der Funktion wp_get_attachment_metadata gelesen werden."
 
 #: incs/class-module-admin.php:88
 msgid "This is useful if you are run a Photolog."
-msgstr "これは、あたながフォトブログを運営している場合に便利です。"
+msgstr "Dies ist nützlich, wenn du einen Foto-Blog betreibst."
