@@ -1,42 +1,49 @@
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: VA Removing Exif 1.0.2\n"
-"POT-Creation-Date: 2018-12-25 20:45+0100\n"
-"PO-Revision-Date: 2015-12-29 07:09+0900\n"
+"Project-Id-Version: VA Social Buzz\n"
+"POT-Creation-Date: 2018-12-25 20:46+0100\n"
+"PO-Revision-Date: 2018-12-25 20:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: VisuAlive <kuck1u@visualive.jp>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.11\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: en_001\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_x;esc_html__;esc_html_e;_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: incs/class-module-admin.php:60
 msgid "Remove Exif Metadata"
-msgstr ""
+msgstr "Exif-Metadaten entfernen"
 
 #: incs/class-module-admin.php:63
 msgid "Save Exif"
-msgstr ""
+msgstr "Exif-Daten speichern"
 
 #: incs/class-module-admin.php:73
-msgid "Configure options for the removal of Exif metadata from uploaded JPEG and PNG images."
+msgid ""
+"Configure options for the removal of Exif metadata from uploaded JPEG and "
+"PNG images."
 msgstr ""
+"Optionen für das Entfernen von Exif-Metadaten aus hochgeladenen JPEG- und "
+"PNG-Dateien"
 
 #: incs/class-module-admin.php:86
 msgid "Save Exif in the post meta."
-msgstr ""
+msgstr "Speichere die Exif-Daten in den Post-Metadaten"
 
 #: incs/class-module-admin.php:87
-msgid "Since Exif is stored in the database, it can be acquired with the wp_get_attachment_metadata function."
+msgid ""
+"Since Exif is stored in the database, it can be acquired with the "
+"wp_get_attachment_metadata function."
 msgstr ""
+"Da die Exif-Daten in der Datenbank gespeichert werden, können sie mithilfe "
+"der Funktion wp_get_attachment_metadata gelesen werden."
 
 #: incs/class-module-admin.php:88
 msgid "This is useful if you are run a Photolog."
-msgstr ""
+msgstr "Dies ist nützlich, wenn du einen Foto-Blog betreibst."

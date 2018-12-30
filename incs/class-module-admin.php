@@ -57,7 +57,7 @@ class Admin {
 	 */
 	public function admin_init() {
 		register_setting( 'media', VA_REMOVING_EXIF_NAME_OPTION, array( &$this, 'sanitize_option' ) );
-		add_settings_section( VA_REMOVING_EXIF_PREFIX . 'section', __( 'VA Removing Exif', 'va-removing-exif' ), array( &$this, 'section_description' ), 'media' );
+		add_settings_section( VA_REMOVING_EXIF_PREFIX . 'section', __( 'Remove Exif Metadata', 'va-removing-exif' ), array( &$this, 'section_description' ), 'media' );
 		add_settings_field(
 			VA_REMOVING_EXIF_PREFIX . 'save_exif',
 			'<label for="' . esc_attr( VA_REMOVING_EXIF_PREFIX . 'save_exif' ) . '">' . __( 'Save Exif', 'va-removing-exif' ) . '</label>',
@@ -68,11 +68,7 @@ class Admin {
 	}
 
 	public function section_description() {
-		printf(
-			'<p>%s<br>%s</p>',
-			esc_html( __( 'This is useful if you are run a Photolog.', 'va-removing-exif' ) ),
-			esc_html( __( 'Since Exif is stored in the database, it can be acquired with the wp_get_attachment_metadata function.', 'va-removing-exif' ) )
-		);
+		echo esc_html( __( 'Configure options for the removal of Exif metadata from uploaded JPEG and PNG images.', 'va-removing-exif' ) );
 	}
 
 	/**
@@ -80,11 +76,13 @@ class Admin {
 	 */
 	public function render_save_exif() {
 		printf(
-			'<label for="%1$s"><input id="%1$s" type="checkbox" name="%2$s" value="1"%3$s>%4$s</label>',
+			'<label for="%1$s"><input id="%1$s" type="checkbox" name="%2$s" value="1"%3$s>%4$s</label><br /><span class="description">%5$s %6$s</span>',
 			esc_attr( VA_REMOVING_EXIF_PREFIX . 'save_exif' ),
 			esc_attr( VA_REMOVING_EXIF_NAME_OPTION ),
 			checked( self::$option, '1', false ),
-			esc_html( __( 'Save Exif in the post meta.', 'va-removing-exif' ) )
+			esc_html( __( 'Save Exif in the post meta.', 'va-removing-exif' ) ),
+			esc_html( __( 'Since Exif is stored in the database, it can be acquired with the wp_get_attachment_metadata function.', 'va-removing-exif' ) ),
+			esc_html( __( 'This is useful if you are run a Photolog.', 'va-removing-exif' ) )
 		);
 	}
 

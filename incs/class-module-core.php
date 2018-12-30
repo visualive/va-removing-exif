@@ -182,28 +182,36 @@ class Core {
 	 * @return array
 	 */
 	public function _removing_exif( $upload = array() ) {
-		if ( ! isset( $upload['type'] ) || 'image/jpeg' !== $upload['type'] || ! vare_load() ) {
+		if ( ! vare_load()  || ! ( $upload['type'] === 'image/jpeg' || $upload['type'] === 'image/png' ) ){
 			return $upload;
 		}
-
-		$jpeg_quality = apply_filters( 'jpeg_quality', 90 );
 
 		if ( vare_imagick_exist() ) {
 			$image = new \Imagick( $upload['file'] );
 
 			if ( $image->valid() ) {
-				$image->setImageFormat( 'jpeg' );
-				$image->setImageCompressionQuality( $jpeg_quality );
+				if ( $upload['type'] === 'image/jpeg') {
+					$jpeg_quality = apply_filters( 'jpeg_quality', 90 );
+					$image->setImageFormat( 'jpeg' );
+					$image->setImageCompressionQuality( $jpeg_quality );
+				} elseif ( $upload['type'] === 'image/png' ) {
+					$image->setImageFormat( 'png' );
+				}
 				$image->stripImage();
 				$image->writeImage( $upload['file'] );
 				$image->clear();
 				$image->destroy();
 			}
 		} elseif ( vare_gd_exist() ) {
-			$image = imagecreatefromjpeg( $upload['file'] );
-
-			imagejpeg( $image, $upload['file'], $jpeg_quality );
-			imagedestroy( $image );
+			if ( $upload['type'] === 'image/jpeg' ) {
+				$image = imagecreatefromjpeg( $upload['file'] );
+				imagejpeg( $image, $upload['file'], $jpeg_quality );
+				imagedestroy( $image );
+			} elseif ( $upload['type'] === 'image/png' ) {
+				$image = imagecreatefrompng( $upload['file'] );
+				imagepng( $image, $upload['file'] );
+				imagedestroy( $image );
+			}
 		}
 
 		return $upload;
